@@ -1,0 +1,38 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --white-color: #FBFAF8;
+  --yellow-color: #F2EFBD;
+  --dark-blue-color: #2450A6;
+  --blue-color: #639CBF;
+  --orange-color: #F28705;
+  --red-color: #F2380F;
+}
+
+body {
+  background-color: var(--yellow-color);
+}
+
+body, h1, h2, h3 {
+  font-family: 'Noto Music', sans-serif;
+}
+
+svg {
+  display: block;
+}
+
+#music {
+  width: 100%;
+  max-width: 660px;
+  margin: 0 auto;
+  padding: 1em;
+
+  --background-color: var(--dark-blue-color);
+  --dissonance-color: var(--orange-color);
+  --consonance-color: var(--blue-color);
+  --notes-color: var(--yellow-color);
+}
