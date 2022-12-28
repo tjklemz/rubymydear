@@ -5,20 +5,19 @@
 }
 
 :root {
-  --white-color: #FBFAF8;
-  --yellow-color: #F2EFBD;
-  --dark-blue-color: #2450A6;
-  --blue-color: #639CBF;
-  --orange-color: #F28705;
-  --red-color: #F2380F;
+  --white-color: #F2EFDF;
+  --dark-purple-color: #211426;
+  --purple-color: #413659;
+  --light-purple-color: #656F8C;
+  --green-color: #9BBFAB;
 }
 
 body {
-  background-color: var(--yellow-color);
+  background-color: var(--dark-purple-color);
 }
 
 body, h1, h2, h3 {
-  font-family: 'Noto Music', sans-serif;
+  font-family: 'Cutive Mono', monospace;
 }
 
 svg {
@@ -29,11 +28,11 @@ svg {
   width: 100%;
   max-width: 660px;
   margin: 0 auto;
-  padding: 1em;
+  padding: 2em 1em;
   user-select: none;
 
-  --background-color: var(--dark-blue-color);
-  --dissonance-color: var(--orange-color);
-  --consonance-color: var(--blue-color);
-  --notes-color: var(--yellow-color);
+  --background-color: var(--purple-color);
+  --dissonance-color: var(--dark-purple-color);
+  --consonance-color: var(--light-purple-color);
+  --notes-color: var(--white-color);
 }
