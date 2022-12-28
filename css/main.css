@@ -30,6 +30,7 @@ svg {
   max-width: 660px;
   margin: 0 auto;
   padding: 1em;
+  user-select: none;
 
   --background-color: var(--dark-blue-color);
   --dissonance-color: var(--orange-color);

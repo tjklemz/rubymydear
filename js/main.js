@@ -8,7 +8,7 @@ const draw = SVG().addTo('#music')
 const outerThickness = 17
 const outerStrokeMiddle = radius - outerThickness / 2
 
-draw.circle(diameter - outerThickness).attr({
+const musicCircle = draw.circle(diameter - outerThickness).attr({
   cx: 0,
   cy: 0,
   fill: 'none',
@@ -54,7 +54,7 @@ for (const [i, name] of notes.entries()) {
   notesGroup.text(name).attr({
     x,
     y,
-  }).click(() => rotateScale(i))
+  })//.click(() => rotateScale(i))
 
   notchesGroup.line(x, y, 0.75*x, 0.75*y)
 
@@ -74,3 +74,60 @@ function rotateScale(i) {
     origin: [0, 0],
   })
 }
+
+const dragState = {
+  x: 0,
+  y: 0,
+  valid: false,
+}
+
+function calcCoords (e) {
+  const rect = e.currentTarget.getBoundingClientRect();
+  const x = ((e.clientX - rect.left) / rect.width) * diameter - radius
+  const y = ((e.clientY - rect.top) / rect.height) * diameter - radius
+
+  return [x, y]
+}
+
+draw.on('mousedown', function (e) {
+  const [x, y] = calcCoords(e)
+
+  const dist = Math.sqrt(x*x + y*y)
+  if (dist <= radius && dist >= radius - outerThickness) {
+    dragState.x = x
+    dragState.y = y
+    dragState.valid = true
+    console.log('mousedown', x, y);
+  }
+})
+
+draw.on('mousemove', function (e) {
+  if (!dragState.valid) return
+
+  const [x, y] = calcCoords(e)
+
+  // const radians = Math.acos(
+  //   (dragState.x * x + dragState.y * y) /
+  //   (Math.sqrt(dragState.x*dragState.x + dragState.y*dragState.y) * Math.sqrt(x*x + y*y))
+  // )
+  const radians = Math.atan2(y, x) - Math.atan2(dragState.y, dragState.x)
+  const angle = Number.isNaN(radians) ? 0 : radians * 180 / Math.PI
+  //console.log('angle', angle)
+
+  major6thScaleGroup.transform({
+    rotate: angle,
+    origin: [0, 0],
+  }, true)
+
+  dragState.x = x
+  dragState.y = y
+})
+
+draw.on('mouseup', function (e) {
+  const i = Math.round(12 * major6thScaleGroup.transform('rotate') / 360)
+  console.log('i', i)
+  major6thScaleGroup.animate().transform({
+    rotate: i*360/12
+  })
+  dragState.valid = false
+})
