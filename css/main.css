@@ -12,6 +12,10 @@
   --green-color: #9BBFAB;
 }
 
+.hide {
+  display: none;
+}
+
 body {
   background-color: var(--dark-purple-color);
 }
